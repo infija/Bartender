@@ -3,16 +3,18 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once dirname( __FILE__ ) . '/manager/DBManager.php';
+require_once dirname( __FILE__ ) . '/manager/CourseManager.php';
 
 /**
 * AdminController class
 */
 class AdminController
 {
-    private $dbManager;
+    private $dbManager, $courseManager;
 
     function __construct(DBManager $dbManager) {
         $this->dbManager = $dbManager;
+        $this->courseManager = $dbManager->courseManager;
     }
 
     /**
@@ -67,12 +69,11 @@ class AdminController
      */
     public function drawCourseExtraFields(){
         add_meta_box( 'course_meta_box',
-            'Course Details',
+            'Detalles de curso',
             array(&$this , 'display_course_meta_box' ),
             'course', 'normal', 'high'
         );
     }
-
 
     /**
      * @param  $course
@@ -80,35 +81,33 @@ class AdminController
      */
     public function display_course_meta_box( $course ) {
         // Retrieve the course related information
-        $course_type = esc_html( get_post_meta( $course->ID, 'course_type', true ) );
-        $course_target = esc_html( get_post_meta( $course->ID, 'course_target', true ) );
-        $course_duration = esc_html( get_post_meta( $course->ID, 'course_duration', true ) );
-        $course_description = esc_html( get_post_meta( $course->ID, 'course_description', true ) );
-        $course_legislation = esc_html( get_post_meta( $course->ID, 'course_legisltion', true ) );
-        
+        $course_duration = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_DURATION, true ) );
+        $course_description = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_DESCRIPTION, true ) );
+        $course_places = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_PLACES, true ) );
+        $course_reservation_start_date = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_RESERVATION_START_DATE, true ) );
+        $course_reservation_end_date = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_RESERVATION_END_DATE, true ) );
+
         ?>
         <table>
             <tr>
-                <td style="width: 100%">Course Type</td>
-                <td><input type="text" size="80" name="course_type" value="<?php echo $course_type; ?>" /></td>
+                <td style="width: 100%">Duracion de Curso</td>
+                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_DURATION ?>" value="<?php echo $course_duration; ?>" /></td>
             </tr>
             <tr>
-                <td style="width: 100%">Course Target</td>
-                <td><input type="text" size="80" name="course_target" value="<?php echo $course_target; ?>" /></td>
+                <td style="width: 100%">Descripcion de Curso</td>
+                <td><textarea name="<?php echo CourseManager::COURSE_DESCRIPTION ?>" id="<?php echo CourseManager::COURSE_DESCRIPTION ?>" cols="50" rows="1"><?php echo $course_description; ?></textarea></td>
             </tr>
             <tr>
-                <td style="width: 100%">Course Duration</td>
-                <td><input type="text" size="80" name="course_duration" value="<?php echo $course_duration; ?>" /></td>
-                
+                <td style="width: 100%">Número de Cupos</td>
+                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_PLACES ?>" value="<?php echo $course_type; ?>" /></td>
             </tr>
             <tr>
-                <td style="width: 100%">Course Description</td>
-                <td><textarea name="course_description" id="course_description" cols="50" rows="1"><?php echo $course_description; ?></textarea></td>
+                <td style="width: 100%">Fecha inicio de reservacin</td>
+                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_START_DATE ?>" value="<?php echo $course_target; ?>" /></td>
             </tr>
             <tr>
-                <td style="width: 100%">Course Legislation</td>
-                <td><input type="text" size="80" name="course_legislation" value="<?php echo $course_legislation; ?>" /></td>
-                
+                <td style="width: 100%">Fecha limite de reservacion</td>
+                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_END_DATE ?>" value="<?php echo $course_legislation; ?>" /></td>
             </tr>
         </table>
         <?php
@@ -123,59 +122,60 @@ class AdminController
         // Check post type for our courses
         if ( $course->post_type == 'course' ) {
             // Store data in post meta table if present in post data
-             if ( isset( $_POST['course_type'] ) && $_POST['course_type'] != '' ) {
-                update_post_meta( $course_id, 'course_type', $_POST['course_type'] );
+            if ( isset( $_POST[CourseManager::COURSE_DURATION] ) && $_POST[CourseManager::COURSE_DURATION] != '' ) {
+                update_post_meta( $course_id, CourseManager::COURSE_DURATION, $_POST[CourseManager::COURSE_DURATION] );
             }
-            if ( isset( $_POST['course_target'] ) && $_POST['course_target'] != '' ) {
-                update_post_meta( $course_id, 'course_target', $_POST['course_target'] );
+            if ( isset( $_POST[CourseManager::COURSE_DESCRIPTION] ) && $_POST[CourseManager::COURSE_DESCRIPTION] != '' ) {
+                update_post_meta( $course_id, CourseManager::COURSE_DESCRIPTION, $_POST[CourseManager::COURSE_DESCRIPTION] );
             }
-            if ( isset( $_POST['course_duration'] ) && $_POST['course_duration'] != '' ) {
-                update_post_meta( $course_id, 'course_duration', $_POST['course_duration'] );
+            if ( isset( $_POST[CourseManager::COURSE_PLACES] ) && $_POST[CourseManager::COURSE_PLACES] != '' ) {
+                update_post_meta( $course_id, CourseManager::COURSE_PLACES, $_POST[CourseManager::COURSE_PLACES] );
             }
-              if ( isset( $_POST['course_description'] ) && $_POST['course_description'] != '' ) {
-                update_post_meta( $course_id, 'course_description', $_POST['course_description'] );
+            if ( isset( $_POST[CourseManager::COURSE_RESERVATION_START_DATE] ) && $_POST[CourseManager::COURSE_RESERVATION_START_DATE] != '' ) {
+                update_post_meta( $course_id, CourseManager::COURSE_RESERVATION_START_DATE, $_POST[CourseManager::COURSE_RESERVATION_START_DATE] );
             }
-              if ( isset( $_POST['course_legislation'] ) && $_POST['course_legislation'] != '' ) {
-                update_post_meta( $course_id, 'course_legislation', $_POST['course_legislation'] );
+            if ( isset( $_POST[CourseManager::COURSE_RESERVATION_END_DATE] ) && $_POST[CourseManager::COURSE_RESERVATION_END_DATE] != '' ) {
+                update_post_meta( $course_id, CourseManager::COURSE_RESERVATION_END_DATE, $_POST[CourseManager::COURSE_RESERVATION_END_DATE] );
             }
         }
     }
 
     /**
-     * @param  array    $columns
+     * Define custom columns
+     * @param  array  $columns
      * @return null
-     */ 
+     */
     public function registerColumns( $columns ) {
-        $columns['course-type'] = 'Type';
-        $columns['course-target'] = 'Target';
-        $columns['course-duration'] = 'Duration';
+        $columns['course-places'] = 'Places';
+        $columns['course-reservation-start-date'] = 'Start Date';
+        $columns['course-reservation-end-date'] = 'End Date';
         unset( $columns['comments'] );
         return $columns;
     }
 
     /**
+     * Draw values for custom columns
      * @param  string  $column
      * @return null
      */
     public function manageColumns( $column ) {
-        if ( 'course-type' == $column ) {
-            $course_type = esc_html( get_post_meta( get_the_ID(), 'course_type', true ) );
-            
-            echo $course_type;
+        if ( 'course-places' == $column ) {
+            $course_places = esc_html( get_post_meta( get_the_ID(), CourseManager::COURSE_PLACES, true ) );
+            echo $course_places;
         }
-        elseif ( 'course-target' == $column ) {
-            $course_target = esc_html( get_post_meta( get_the_ID(), 'course_target', true ) );
-            echo $course_target;
+        elseif ( 'course-reservation-start-date' == $column ) {
+            $course_reservation_start_date = esc_html( get_post_meta( get_the_ID(), CourseManager::COURSE_RESERVATION_START_DATE, true ) );
+            echo $course_reservation_start_date;
         }
-         elseif ( 'course-duration' == $column ) {
-            $course_duration = esc_html( get_post_meta( get_the_ID(), 'course_duration', true ) );
-            echo $course_duration;
+        elseif ( 'course-reservation-end-date' == $column ) {
+            $course_reservation_end_date = esc_html( get_post_meta( get_the_ID(), CourseManager::COURSE_RESERVATION_END_DATE, true ) );
+            echo $course_reservation_end_date;
         }
     }
 
     /**
      * Pick a template for post-course
-     * @param  string $template_path
+     * @param  array $template_path
      * @return array
      */
     public function include_template_function( $template_path ) {
@@ -186,18 +186,18 @@ class AdminController
                 if ( $theme_file = locate_template( array ( 'single-course.php' ) ) ) {
                     $template_path = $theme_file;
                 } else {
-                    $template_path = plugin_dir_path( __FILE__ ) . '/single-course.php';
+                    $template_path = plugin_dir_path( __FILE__ ) . '/admin/single-course.php';
                 }
-                
+
             }
              elseif ( is_archive() ) {
                 if ( $theme_file = locate_template( array ( 'archive-course.php' ) ) ) {
                     $template_path = $theme_file;
-                } else { $template_path = plugin_dir_path( __FILE__ ) . '/archive-course.php';
-     
+                } else { $template_path = plugin_dir_path( __FILE__ ) . '/admin/archive-course.php';
+
                 }
             }
-        
+
         }
         return $template_path;
     }
