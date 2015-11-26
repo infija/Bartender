@@ -50,7 +50,7 @@ class Main
             $this->dbManager = new DBManager;
         }
         // TODO: update if table exists
-        $this->dbManager->createTables();
+        $this->dbManager->createContext();
     }
 
     /**
@@ -64,7 +64,7 @@ class Main
         if ( !isset( $this->dbManager ) ) {
             $this->dbManager = new DBManager;
         }
-        $this->dbManager->removeTables();
+        $this->dbManager->removeContext();
     }
 
     /**
@@ -79,11 +79,18 @@ class Main
      */
     private function addHooks(){
 
+        add_action('init', array(&$this->dbManager, 'setCoursePostType'));
+
         add_action('init', array(&$this, 'manageSubmits'));
         add_action('wp_enqueue_scripts', array(&$this, 'enqueueScripts'));
         if(is_admin()){
             add_action('admin_enqueue_scripts', array(&$this->adminController, 'enqueueScripts'));
             add_action('admin_menu', array(&$this->adminController, 'fillMenu'));
+            add_action( 'admin_init', array(&$this->adminController, 'drawCourseExtraFields') );
+            add_action( 'save_post', array(&$this->adminController, 'saveCourseExtraFields'), 10, 2 );
+            add_filter( 'manage_edit-course_columns', array(&$this->adminController, 'registerColumns') );
+            add_action( 'manage_posts_custom_column', array(&$this->adminController, 'manageColumns') );
+            add_filter( 'template_include', array(&$this->adminController, 'includeCourseTemplates') , 1 );
         }
     }
 
