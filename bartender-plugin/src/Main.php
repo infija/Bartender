@@ -3,6 +3,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once dirname( __FILE__ ) . '/manager/DBManager.php';
+require_once dirname( __FILE__ ) . '/manager/CourseManager.php';
 require_once dirname( __FILE__ ) . '/AdminController.php';
 require_once dirname( __FILE__ ) . '/PublicController.php';
 
@@ -18,6 +19,7 @@ class Main
 
     public function __construct(){
         $this->dbManager = new DBManager;
+        $this->courseManager = new CourseManager;
 
         if(is_admin()){
             $this->adminController = new AdminController($this->dbManager);
@@ -78,19 +80,20 @@ class Main
      * Add the required Hooks
      */
     private function addHooks(){
-
-        add_action('init', array(&$this->dbManager, 'setCoursePostType'));
-
+        // initialize
+        add_action('init', array(&$this->courseManager, 'setCoursePostType'));
         add_action('init', array(&$this, 'manageSubmits'));
+
         add_action('wp_enqueue_scripts', array(&$this, 'enqueueScripts'));
         if(is_admin()){
-            add_action('admin_enqueue_scripts', array(&$this->adminController, 'enqueueScripts'));
-            add_action('admin_menu', array(&$this->adminController, 'fillMenu'));
+            // add filters
+            add_filter( 'manage_edit-course_columns', array(&$this->adminController, 'registerColumns') );
+            // add actions
+            add_action( 'admin_enqueue_scripts', array(&$this->adminController, 'enqueueScripts'));
+            add_action( 'admin_menu', array(&$this->adminController, 'fillMenu'));
             add_action( 'admin_init', array(&$this->adminController, 'drawCourseExtraFields') );
             add_action( 'save_post', array(&$this->adminController, 'saveCourseExtraFields'), 10, 2 );
-            add_filter( 'manage_edit-course_columns', array(&$this->adminController, 'registerColumns') );
             add_action( 'manage_posts_custom_column', array(&$this->adminController, 'manageColumns') );
-            add_filter( 'template_include', array(&$this->adminController, 'includeCourseTemplates') , 1 );
         }
     }
 
@@ -100,7 +103,7 @@ class Main
      */
     public function enqueueScripts(){
         // wp_enqueue_script('jquery-min',plugins_url("casumo-blog/public/nominate/lib/jquery-2.1.4.min.js"));
-        
+
         /** styles */
         // wp_enqueue_style('bootstrap-min-css',plugins_url("casumo-blog/public/nominate/css/bootstrap.min.css"));
     }
@@ -130,4 +133,5 @@ class Main
     }
 
 }
+
 
