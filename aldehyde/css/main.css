@@ -2,22 +2,22 @@
 /* Table of Contents
 ------------------------------------------------------- *
 
-	0. Bootstrap Fixes
-	1. Less Variables & Mixins
-	2. Top Bar
-	3. Header
-	4. Links
-	5. Navigation Menu
-	6. Slider
-	7. Content
-		7.1. Primary
-		7.2. Secondary
-	8. Pagination
-	9. Footer
-	10. HTML Markup and Formatting
-	11. Widgets Style
-	12. Comments
-	
+        0. Bootstrap Fixes
+        1. Less Variables & Mixins
+        2. Top Bar
+        3. Header
+        4. Links
+        5. Navigation Menu
+        6. Slider
+        7. Content
+                7.1. Primary
+                7.2. Secondary
+        8. Pagination
+        9. Footer
+        10. HTML Markup and Formatting
+        11. Widgets Style
+        12. Comments
+        
 /* 0. Bootstrap Fixes
 -------------------------------------------------------	*/
 body {
@@ -58,7 +58,7 @@ code {
 /* 2. Top Bar
 ------------------------------------------------------- */
 #top-bar {
-  background: #dfdfdf;
+  background: #DFDFDF;
   padding: 5px 0px;
   position: relative;
   z-index: 99999;
@@ -81,8 +81,8 @@ code {
   transition: ease 0.4s all;
 }
 .social-icon:hover {
-  color: #89db52;
-  text-shadow: 3px 3px 1px #918f93;
+  color: #89DB52;
+  text-shadow: 3px 3px 1px #918F93;
   top: -2px;
   left: -2px;
 }
@@ -112,12 +112,10 @@ a:hover .social-icon {
 }
 #top-search :-moz-placeholder {
   /* Firefox 18- */
-
   color: #78757a;
 }
 #top-search ::-moz-placeholder {
   /* Firefox 19+ */
-
   color: #78757a;
 }
 #top-search :-ms-input-placeholder {
@@ -175,12 +173,12 @@ body {
 /* 4. Links
 ------------------------------------------------------- */
 a {
-  color: #918f93;
+  color: #918F93;
 }
 a:hover,
 a:focus,
 a:active {
-  color: #89db52;
+  color: #89DB52;
 }
 /* 5. Navigation Menu 
 -------------------------------------------------------	*/
@@ -190,7 +188,7 @@ a:active {
   display: block;
   float: right;
   display: inline-block;
-  background: #ffffff;
+  background: #FFF;
   margin-bottom: 30px;
   padding-bottom: 0px;
 }
@@ -221,7 +219,7 @@ a:active {
   content: '';
 }
 #site-navigation .current_page_item > a {
-  background: #eeeeee;
+  background: #EEE;
   border-top: solid 3px #222;
   padding-top: 12px;
 }
@@ -233,7 +231,6 @@ a:active {
 }
 #site-navigation ul li:hover > ul {
   /* Dropdown*/
-
   display: block;
 }
 #site-navigation ul ul {
@@ -243,7 +240,7 @@ a:active {
   top: 3.4em;
   left: 0;
   z-index: 99999;
-  background: #eeeeee;
+  background: #EEE;
 }
 #site-navigation ul ul ul {
   border: solid 1px #d5d5d5;
@@ -271,7 +268,7 @@ a:active {
 }
 #site-navigation a {
   display: block;
-  color: #918f93;
+  color: #918F93;
   text-decoration: none;
   padding: 16px 15px;
   font-weight: normal;
@@ -281,13 +278,13 @@ a:active {
   border-top: #0C9 solid 4px;
 }
 #site-navigation li:hover > a {
-  background: #eeeeee;
-  border-top: #89db52 solid 4px;
+  background: #EEE;
+  border-top: #89DB52 solid 4px;
   padding-top: 12px;
   color: black;
 }
 #site-navigation ul ul li:hover > a {
-  background: #ffffff;
+  background: #FFF;
   border-top: none;
   padding: 8px 20px;
   color: black;
@@ -381,7 +378,7 @@ div.slide-description {
 ------------------------------------------------------- */
 #content {
   background: white;
-  border-top: solid 4px #dfdfdf;
+  border-top: solid 4px #DFDFDF;
   padding: none;
   margin-right: 0px;
   margin-left: 0px;
@@ -393,13 +390,32 @@ div.slide-description {
 }
 #primary .icon-time:before,
 #primary .icon-user:before {
-  color: #918f93 !important;
+  color: #918F93 !important;
 }
 #primary .byline {
   display: inline;
 }
 article.archive .article-rest {
   margin: auto;
+  background: #fafafa;
+  border: solid 1px #eee;
+  padding-bottom: 30px;
+}
+article.archive .article-rest .entry-content {
+  display: none;
+}
+article.archive .article-rest .arrow-article-top {
+  display: none;
+  float: right;
+  width: 22px;
+  height: 22px;
+  background: url(themes/default/arrowTop.png) no-repeat;
+}
+article.archive .article-rest .arrow-article-bottom {
+  float: right;
+  width: 22px;
+  height: 22px;
+  background: url(themes/default/arrowBottom.png) no-repeat;
 }
 .featured-thumb {
   margin: auto;
@@ -431,7 +447,7 @@ article.archive .article-rest {
   color: #5e5c60;
 }
 .featured-thumb .img-meta .meta-link:hover {
-  color: #89db52;
+  color: #89DB52;
   text-decoration: none;
 }
 .featured-thumb .img-meta .meta-link i {
@@ -461,11 +477,11 @@ article.archive .article-rest {
   color: #000000;
 }
 .archive .entry-title a:hover {
-  color: #89db52;
+  color: #89DB52;
 }
 .archive .entry-meta {
   font-size: small;
-  color: #918f93;
+  color: #918F93;
 }
 .archive .entry-meta .posted-on {
   margin-right: 6px;
@@ -497,7 +513,7 @@ article.archive .article-rest {
   margin-right: 5px;
   content: "\f0da";
   font-family: "FontAwesome";
-  color: #918f93;
+  color: #918F93;
 }
 #secondary ul ul {
   margin-left: 15px;
@@ -534,7 +550,7 @@ article.archive .article-rest {
   background: #fff;
 }
 #secondary .widget_calendar thead {
-  border-bottom: solid 1px #89db52;
+  border-bottom: solid 1px #89DB52;
 }
 #secondary .widget_calendar thead th {
   background: #ddd;
@@ -556,7 +572,7 @@ article.archive .article-rest {
 #secondary h1.widget-title {
   font-size: 20px;
   font-weight: normal;
-  border-bottom: solid 4px #89db52;
+  border-bottom: solid 4px #89DB52;
   background: #fafafa;
   padding: 5px;
   margin-top: 0px;
@@ -605,14 +621,14 @@ article.archive .article-rest {
   display: inline;
 }
 .pagination ul > li > a {
-  color: #eeeeee;
+  color: #EEE;
   transition: all 0.4s ease;
 }
 .pagination ul > li > a .next {
   float: right;
 }
 .pagination ul > li > a:hover {
-  color: #918f93;
+  color: #918F93;
   background: #eee;
 }
 .pagination .current {
@@ -641,7 +657,7 @@ article.archive .article-rest {
 /* 9. Footer 
 ------------------------------------------------------- */
 #colophon {
-  background: #ffffff;
+  background: #FFF;
   padding: 10px;
   border-top: solid 1px #ddd;
   border-bottom: solid 4px #ddd;
@@ -713,7 +729,7 @@ article table th {
   background: #f9f9f9;
 }
 #comments .vcard img {
-  border: solid 4px #ffffff;
+  border: solid 4px #FFF;
   border-radius: 5px;
   margin: 0 10px 10px 0;
 }
