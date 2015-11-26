@@ -4,6 +4,22 @@
  */
 ?>
 
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	//jQuery('.article-rest .entry-content').hide();
+        jQuery('.arrow-article-top').click(function(){
+            jQuery('.article-rest .entry-content').hide();
+            jQuery('.arrow-article-top').hide();
+            jQuery('.arrow-article-bottom').show();
+        });
+        jQuery('.arrow-article-bottom').click(function(){
+            jQuery('.article-rest .entry-content').show();
+            jQuery('.arrow-article-bottom').hide();
+            jQuery('.arrow-article-top').show();
+        });
+});
+</script>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class("row archive"); ?>>
 	
 	<div class="featured-thumb col-md-12 col-xs-12">
@@ -53,5 +69,7 @@
 		?>
 	</div><!-- .entry-content -->
 	<?php endif; ?>
+        <div class="arrow-article-top"></div>
+        <div class="arrow-article-bottom"></div>
 	</div>
 </article><!-- #post-## -->

@@ -66,7 +66,6 @@ jQuery(document).ready(function() {
 	if (jQuery('#example_showhidden:checked').val() !== undefined) {
 		jQuery('#section-example_text_hidden').show();
 	}
-	
 });
 </script>
  
@@ -201,3 +200,8 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Add shortcode to widget
+ */
+ add_filter('widget_text', 'do_shortcode');
