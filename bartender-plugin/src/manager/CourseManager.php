@@ -8,6 +8,8 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  */
 class CourseManager
 {
+    // define new custom post type
+    const POST_TYPE = 'course';
 
     // define Course custom fields
     const COURSE_DURATION = "course_duration";
@@ -21,7 +23,7 @@ class CourseManager
      */
     public function setCoursePostType() {
         // create Post-type
-        register_post_type( 'course',
+        register_post_type( self::POST_TYPE,
             array(
                 'labels' => array(
                     'name' => 'Cursos',
@@ -54,7 +56,7 @@ class CourseManager
 
         register_taxonomy(
             'course-categories',
-            'course',
+            self::POST_TYPE,
             array(
                 'labels' => array(
                     'name' => 'Categoria de curso',
@@ -68,5 +70,38 @@ class CourseManager
         );
     }
 
+    /**
+     * Create data for testing purposes
+     * @return null
+     */
+    public function createTestData(){
+        $postId = wp_insert_post(
+                        array(
+                            'ping_status'   => get_option('default_ping_status'),
+                            'post_author'   => get_current_user_id(),
+                            'post_name'   => 'test-course',
+                            'post_title'    => 'Test Course',
+                            'post_content' => 'Lorem ipsum content',
+                            'post_status'   => 'publish',
+                            'post_type'   => self::POST_TYPE
+                        ));
+        return $postId;
+    }
+
+    /**
+     * Create data for testing purposes
+     * @return null
+     */
+    public function removeTestData(){
+        $posts = get_posts(array(
+            'name' => 'test-course',
+            'posts_per_page' => 1,
+            'post_type' => self::POST_TYPE,
+            'post_status' => 'publish'
+            ));
+        // $posts[0];
+        wp_delete_post($posts[0]->ID);
+
+    }
 
 }

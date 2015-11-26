@@ -3,20 +3,21 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once dirname( __FILE__ ) . '/ApplicationManager.php';
+require_once dirname( __FILE__ ) . '/CourseManager.php';
 
 /**
  * DBManager Class
  */
 class DBManager
 {
-    public $wpdb;
+    public $wpdb, $applicationManager, $courseManager;
     public static $prefix = 'bt_';
-    public $applicationManager;
 
     public function __construct(){
         global $wpdb;
         $this->wpdb = $wpdb;
         $this->applicationManager = new ApplicationManager($wpdb, $this);
+        $this->courseManager = new CourseManager($wpdb, $this);
 
         // import wp sql functions
         require_once(ABSPATH.'wp-admin/includes/upgrade.php');
@@ -39,7 +40,8 @@ class DBManager
         // TODO: create tables & test data
         $this->applicationManager->createTable();
 
-        $this->applicationManager->createTestData();
+        $postId = $this->courseManager->createTestData();
+        $this->applicationManager->createTestData($postId);
     }
 
     /**
@@ -48,5 +50,7 @@ class DBManager
      */
     public function removeContext(){
         $this->applicationManager->removeTable();
+
+        $this->courseManager->removeTestData();
     }
 }

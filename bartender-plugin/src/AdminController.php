@@ -4,6 +4,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 require_once dirname( __FILE__ ) . '/manager/DBManager.php';
 require_once dirname( __FILE__ ) . '/manager/CourseManager.php';
+require_once dirname( __FILE__ ) . '/manager/ApplicationManager.php';
 
 /**
 * AdminController class
@@ -127,7 +128,7 @@ class AdminController
      */
     public function displayCourseReservationsMetaBox( $course ) {
         // retrieve Reservation
-        $reservations = array(''); // TODO: get reservations by a given $course->ID;
+        $reservations = $this->applicationManager->getApplications($course->ID);
 
         ?>
         <table style="width:100%;">
@@ -140,12 +141,11 @@ class AdminController
             foreach ($reservations as $reservation) {
                 ?>
                 <tr>
-                    <td>alfredo </td>
-                    <td>98128163487123</td>
-                    <td>65123871</td>
+                    <td><?php echo $reservation->{ApplicationManager::FIRST_NAME} . ' ' . $reservation->{ApplicationManager::LAST_NAME} ?> </td>
+                    <td><?php echo $reservation->{ApplicationManager::CARNET} ?></td>
+                    <td><?php echo $reservation->{ApplicationManager::TELEFONO} ?></td>
                 </tr>
                 <?php
-
             }
         ?>
         </table>
@@ -176,7 +176,6 @@ class AdminController
             if ( isset( $_POST[CourseManager::COURSE_RESERVATION_END_DATE] ) && $_POST[CourseManager::COURSE_RESERVATION_END_DATE] != '' ) {
                 update_post_meta( $course_id, CourseManager::COURSE_RESERVATION_END_DATE, $_POST[CourseManager::COURSE_RESERVATION_END_DATE] );
             }
-            var_dump($_POST);
         }
     }
 

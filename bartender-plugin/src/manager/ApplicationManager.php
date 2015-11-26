@@ -36,6 +36,15 @@ class ApplicationManager
     }
 
     /**
+     * gets the full table name
+     * @return string
+     */
+    public function getApplications($postId){
+        return $this->wpdb->get_results("select * from " . self::getTableName() . " WHERE " . self::POST_ID . " = " . $postId);
+    }
+
+
+    /**
      * Create table
      * @return null
      */
@@ -69,7 +78,13 @@ class ApplicationManager
      * Create data for testing purposes
      * @return null
      */
-    public function createTestData(){
-        // do nothing
+    public function createTestData($postId){
+        $sql = "INSERT INTO `" . self::getTableName() . "` (`" . self::FIRST_NAME . "`,`" . self::LAST_NAME . "`,`" . self::TELEFONO . "`,`" . self::CARNET . "`,`" . self::POST_ID . "`)
+                VALUES ('Juan', 'Perez', '454536636', '1231414', '" . $postId . "' );";
+
+        $sql = "INSERT INTO `" . self::getTableName() . "` (`" . self::FIRST_NAME . "`,`" . self::LAST_NAME . "`,`" . self::TELEFONO . "`,`" . self::CARNET . "`,`" . self::POST_ID . "`)
+                VALUES ('Pedro', 'Perez', '334353', '65631414', '" . $postId . "' );";
+
+        $this->wpdb->query($sql);
     }
 }
