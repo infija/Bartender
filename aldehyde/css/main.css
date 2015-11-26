@@ -404,18 +404,23 @@ article.archive .article-rest {
 article.archive .article-rest .entry-content {
   display: none;
 }
-article.archive .article-rest .arrow-article-top {
-  display: none;
+article.archive .article-rest .arrows-article {
   float: right;
+}
+article.archive .article-rest .arrows-article .arrow-article-top {
+  display: none;
   width: 22px;
   height: 22px;
   background: url(themes/default/arrowTop.png) no-repeat;
 }
-article.archive .article-rest .arrow-article-bottom {
-  float: right;
+article.archive .article-rest .arrows-article .arrow-article-bottom {
   width: 22px;
   height: 22px;
   background: url(themes/default/arrowBottom.png) no-repeat;
+}
+article.archive .article-rest .reserve-form {
+  display: none;
+  margin-top: 10px;
 }
 .featured-thumb {
   margin: auto;
