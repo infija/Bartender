@@ -2,21 +2,26 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+require_once dirname( __FILE__ ) . '/ApplicationManager.php';
+
 /**
  * DBManager Class
  */
 class DBManager
 {
     public $wpdb;
-    public static $prefix = 'cb_';
+    public static $prefix = 'bt_';
+    public $applicationManager;
 
     public function __construct(){
         global $wpdb;
         $this->wpdb = $wpdb;
+        $this->applicationManager = new ApplicationManager($wpdb, $this);
 
         // import wp sql functions
         require_once(ABSPATH.'wp-admin/includes/upgrade.php');
     }
+
     /**
      * gets the DB prefix
      * @return string
@@ -32,7 +37,9 @@ class DBManager
      */
     public function createContext(){
         // TODO: create tables & test data
+        $this->applicationManager->createTable();
 
+        $this->applicationManager->createTestData();
     }
 
     /**
@@ -40,6 +47,6 @@ class DBManager
      * @return null
      */
     public function removeContext(){
-
+        $this->applicationManager->removeTable();
     }
 }

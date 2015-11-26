@@ -99,15 +99,15 @@ class AdminController
             </tr>
             <tr>
                 <td style="width: 100%">Número de Cupos</td>
-                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_PLACES ?>" value="<?php echo $course_type; ?>" /></td>
+                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_PLACES ?>" value="<?php echo $course_places; ?>" /></td>
             </tr>
             <tr>
-                <td style="width: 100%">Fecha inicio de reservacin</td>
-                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_START_DATE ?>" value="<?php echo $course_target; ?>" /></td>
+                <td style="width: 100%">Fecha inicio de reservacion</td>
+                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_START_DATE ?>" value="<?php echo $course_reservation_start_date; ?>" /></td>
             </tr>
             <tr>
                 <td style="width: 100%">Fecha limite de reservacion</td>
-                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_END_DATE ?>" value="<?php echo $course_legislation; ?>" /></td>
+                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_END_DATE ?>" value="<?php echo $course_reservation_end_date; ?>" /></td>
             </tr>
         </table>
         <?php
@@ -137,6 +137,7 @@ class AdminController
             if ( isset( $_POST[CourseManager::COURSE_RESERVATION_END_DATE] ) && $_POST[CourseManager::COURSE_RESERVATION_END_DATE] != '' ) {
                 update_post_meta( $course_id, CourseManager::COURSE_RESERVATION_END_DATE, $_POST[CourseManager::COURSE_RESERVATION_END_DATE] );
             }
+            var_dump($_POST);
         }
     }
 
@@ -149,6 +150,7 @@ class AdminController
         $columns['course-places'] = 'Places';
         $columns['course-reservation-start-date'] = 'Start Date';
         $columns['course-reservation-end-date'] = 'End Date';
+        $columns['course-reservations'] = 'Reservaciones';
         unset( $columns['comments'] );
         return $columns;
     }
@@ -170,6 +172,9 @@ class AdminController
         elseif ( 'course-reservation-end-date' == $column ) {
             $course_reservation_end_date = esc_html( get_post_meta( get_the_ID(), CourseManager::COURSE_RESERVATION_END_DATE, true ) );
             echo $course_reservation_end_date;
+        }
+        elseif ( 'course-reservations' == $column ) {
+            echo '<a href="google.com">link</a>';
         }
     }
 
