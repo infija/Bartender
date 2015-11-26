@@ -89,8 +89,8 @@ class Main
             // add filters
             add_filter( 'manage_edit-course_columns', array(&$this->adminController, 'registerColumns') );
             // add actions
-            add_action('admin_enqueue_scripts', array(&$this->adminController, 'enqueueScripts'));
-            add_action('admin_menu', array(&$this->adminController, 'fillMenu'));
+            add_action( 'admin_enqueue_scripts', array(&$this->adminController, 'enqueueScripts'));
+            add_action( 'admin_menu', array(&$this->adminController, 'fillMenu'));
             add_action( 'admin_init', array(&$this->adminController, 'drawCourseExtraFields') );
             add_action( 'save_post', array(&$this->adminController, 'saveCourseExtraFields'), 10, 2 );
             add_action( 'manage_posts_custom_column', array(&$this->adminController, 'manageColumns') );

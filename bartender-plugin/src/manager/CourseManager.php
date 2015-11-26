@@ -24,19 +24,19 @@ class CourseManager
         register_post_type( 'course',
             array(
                 'labels' => array(
-                    'name' => 'Courses',
-                    'singular_name' => 'Course',
-                    'add_new' => 'Add New',
-                    'add_new_item' => 'Add New Course',
-                    'edit' => 'Edit',
-                    'edit_item' => 'Edit Course',
-                    'new_item' => 'New Course',
-                    'view' => 'View',
-                    'view_item' => 'View Course',
-                    'search_items' => 'Search Courses',
-                    'not_found' => 'No Courses found',
-                    'not_found_in_trash' => 'No Courses found in Trash',
-                    'parent' => 'Parent Course'
+                    'name' => 'Cursos',
+                    'singular_name' => 'Curso',
+                    'add_new' => 'Agregar nuevo Curso',
+                    'add_new_item' => 'Agregar nuevo Curso',
+                    'edit' => 'Editar',
+                    'edit_item' => 'Editar Curso',
+                    'new_item' => 'Nuevo Curso',
+                    'view' => 'Ver',
+                    'view_item' => 'Ver Curso',
+                    'search_items' => 'Buscar Cursos',
+                    'not_found' => 'Ningun curso encontrado',
+                    'not_found_in_trash' => 'Ningun curso encontrado en la Papelera de reciclage',
+                    'parent' => 'Curso Padre'
                 ),
 
                 'public' => true,

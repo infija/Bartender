@@ -10,11 +10,12 @@ require_once dirname( __FILE__ ) . '/manager/CourseManager.php';
 */
 class AdminController
 {
-    private $dbManager, $courseManager;
+    private $dbManager, $courseManager, $applicationManager;
 
     function __construct(DBManager $dbManager) {
         $this->dbManager = $dbManager;
         $this->courseManager = $dbManager->courseManager;
+        $this->applicationManager = $dbManager->applicationManager;
     }
 
     /**
@@ -68,18 +69,25 @@ class AdminController
      * @return null
      */
     public function drawCourseExtraFields(){
-        add_meta_box( 'course_meta_box',
-            'Detalles de curso',
-            array(&$this , 'display_course_meta_box' ),
+        add_meta_box( 'course_reservations_meta_box',
+            'Reservaciones',
+            array(&$this , 'displayCourseReservationsMetaBox' ),
             'course', 'normal', 'high'
         );
+
+        add_meta_box( 'course_meta_box',
+            'Detalles de curso',
+            array(&$this , 'displayCourseMetaBox' ),
+            'course', 'normal', 'high'
+        );
+
     }
 
     /**
      * @param  $course
      * @return null
      */
-    public function display_course_meta_box( $course ) {
+    public function displayCourseMetaBox( $course ) {
         // Retrieve the course related information
         $course_duration = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_DURATION, true ) );
         $course_description = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_DESCRIPTION, true ) );
@@ -109,6 +117,37 @@ class AdminController
                 <td style="width: 100%">Fecha limite de reservacion</td>
                 <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_END_DATE ?>" value="<?php echo $course_reservation_end_date; ?>" /></td>
             </tr>
+        </table>
+        <?php
+    }
+
+    /**
+     * @param  $course
+     * @return null
+     */
+    public function displayCourseReservationsMetaBox( $course ) {
+        // retrieve Reservation
+        $reservations = array(''); // TODO: get reservations by a given $course->ID;
+
+        ?>
+        <table style="width:100%;">
+            <thead>
+                <td>Name</td>
+                <td>CI</td>
+                <td>Telefono</td>
+            </thead>
+        <?php
+            foreach ($reservations as $reservation) {
+                ?>
+                <tr>
+                    <td>alfredo </td>
+                    <td>98128163487123</td>
+                    <td>65123871</td>
+                </tr>
+                <?php
+
+            }
+        ?>
         </table>
         <?php
     }
