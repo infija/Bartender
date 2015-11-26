@@ -88,7 +88,6 @@ class Main
         if(is_admin()){
             // add filters
             add_filter( 'manage_edit-course_columns', array(&$this->adminController, 'registerColumns') );
-            add_filter( 'template_include', array(&$this->adminController, 'includeCourseTemplates') , 1 );
             // add actions
             add_action('admin_enqueue_scripts', array(&$this->adminController, 'enqueueScripts'));
             add_action('admin_menu', array(&$this->adminController, 'fillMenu'));

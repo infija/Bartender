@@ -42,6 +42,7 @@ class CourseManager
                 'public' => true,
                 'show_ui' => true,
                 'show_in_menu' => true,
+                'show_in_nav_menu' => true,
                 'capability_type' => 'post',
                 'map_meta_cap' => true,
                 'menu_position' => 15,

@@ -173,37 +173,6 @@ class AdminController
         }
     }
 
-    /**
-     * Pick a template for post-course
-     * @param  array $template_path
-     * @return array
-     */
-    public function include_template_function( $template_path ) {
-        if ( get_post_type() == 'course' ) {
-            if ( is_single() ) {
-                // checks if the file exists in the theme first,
-                // otherwise serve the file from the plugin
-                if ( $theme_file = locate_template( array ( 'single-course.php' ) ) ) {
-                    $template_path = $theme_file;
-                } else {
-                    $template_path = plugin_dir_path( __FILE__ ) . '/admin/single-course.php';
-                }
-
-            }
-             elseif ( is_archive() ) {
-                if ( $theme_file = locate_template( array ( 'archive-course.php' ) ) ) {
-                    $template_path = $theme_file;
-                } else { $template_path = plugin_dir_path( __FILE__ ) . '/admin/archive-course.php';
-
-                }
-            }
-
-        }
-        return $template_path;
-    }
-
-
-
     /**************** Manage _POST Requests *****************/
 
     /**
