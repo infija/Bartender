@@ -91,7 +91,7 @@ jQuery(document).ready(function() {
                 <input name="ci" type="number" placeholder="CI" required/>
                 <input name="phone" type="number" placeholder="Telefono" required/>
                 <input name="post_id" type="hidden" value="<?php the_ID(); ?>">
-                <input name="submit_key" type="hidden" value="course_reservation">
+                <input name="action" type="hidden" value="course_reservation">
                 <input type="submit" class="btn" value="Reservar"/>
             </form>
         </div>
