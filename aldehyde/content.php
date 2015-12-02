@@ -53,8 +53,7 @@ jQuery(document).ready(function() {
 	<header class="entry-header">
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
                 </h1>
-
-		<?php if ( 'post' == get_post_type() ) : ?>
+		<?php if ( 'post' == get_post_type() || 'course' == get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php aldehyde_posted_on(); ?>
                         <div id="btn-<?php the_ID(); ?>" class="btn btn-success button-reserve">Reservar Cupo</div>
