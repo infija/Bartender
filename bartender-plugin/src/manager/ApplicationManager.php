@@ -43,6 +43,21 @@ class ApplicationManager
         return $this->wpdb->get_results("select * from " . self::getTableName() . " WHERE " . self::POST_ID . " = " . $postId);
     }
 
+    /**
+     * Creates a Reservation
+     * @param  int $postId
+     * @param  string $firstName
+     * @param  string $lastName
+     * @param  int $phoneNumber
+     * @param  int $ci
+     * @return bool|int
+     */
+    public function createReservation($postId, $firstName, $lastName, $phoneNumber, $ci){
+        $sql = "INSERT INTO `" . self::getTableName() . "` (`" . self::FIRST_NAME . "`,`" . self::LAST_NAME . "`,`" . self::TELEFONO . "`,`" . self::CARNET . "`,`" . self::POST_ID . "`)
+                VALUES ('" . $firstName . "', '" . $lastName . "', '" . $phoneNumber . "', '" . $ci . "', '" . $postId . "' );";
+        return $this->wpdb->query($sql);
+    }
+
 
     /**
      * Create table

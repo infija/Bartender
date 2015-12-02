@@ -22,8 +22,16 @@ class PublicController
     public function manageSubmits(){
         if(!empty($_POST)){
             switch ($_POST['action']) {
+                case 'course_reservation':
+                    $res = $this->dbManager->applicationManager->createReservation($_POST['post_id'], $_POST['first_name'], $_POST['last_name'], $_POST['phone'], $_POST['ci']);
+                    if ($res){
+                        // new application/reservation was created
+                    }else{
+                        // someting bad has happened
+                    }
+                    header("Location: " . $_SERVER['HTTP_REFERER'] );
+                    break;
                 default:
-                    //echo json_encode(['message'=> 'not allowed']);
                     break;
             }
         }

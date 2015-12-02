@@ -103,20 +103,20 @@ class AdminController
                 <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_DURATION ?>" value="<?php echo $course_duration; ?>" /></td>
             </tr>
             <tr>
-                <td style="width: 100%">Descripcion de Curso</td>
+                <td style="width: 100%">Informacion del Curso</td>
                 <td><textarea name="<?php echo CourseManager::COURSE_DESCRIPTION ?>" id="<?php echo CourseManager::COURSE_DESCRIPTION ?>" cols="50" rows="1"><?php echo $course_description; ?></textarea></td>
             </tr>
             <tr>
                 <td style="width: 100%">Número de Cupos</td>
-                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_PLACES ?>" value="<?php echo $course_places; ?>" /></td>
+                <td><input type="number" size="80" name="<?php echo CourseManager::COURSE_PLACES ?>" value="<?php echo $course_places; ?>" /></td>
             </tr>
             <tr>
                 <td style="width: 100%">Fecha inicio de reservacion</td>
-                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_START_DATE ?>" value="<?php echo $course_reservation_start_date; ?>" /></td>
+                <td><input type="date" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_START_DATE ?>" value="<?php echo $course_reservation_start_date; ?>" /></td>
             </tr>
             <tr>
                 <td style="width: 100%">Fecha limite de reservacion</td>
-                <td><input type="text" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_END_DATE ?>" value="<?php echo $course_reservation_end_date; ?>" /></td>
+                <td><input type="date" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_END_DATE ?>" value="<?php echo $course_reservation_end_date; ?>" /></td>
             </tr>
         </table>
         <?php
