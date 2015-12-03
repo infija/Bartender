@@ -39,7 +39,7 @@ jQuery(document).ready(function() {
                                             $thumb_id = get_post_thumbnail_id();
                                             $thumb_url = wp_get_attachment_image_src($thumb_id,'full', true);
                     ?>
-                    <div class="img-meta-img meta-icon"><a class='meta-link meta-link-img' title="<?php the_title(); ?>" href="<?php echo $thumb_url[0] ?>"><i class="icon-picture"></i></a></div>
+                            <div class="img-meta-img meta-icon"><a class='meta-link meta-link-img' title="<?php the_title(); ?>" href="<?php echo $thumb_url[0] ?>"><i class="icon-picture"></i></a></div>
                     <?php endif; ?>
                     </div>
                     <a href="<?php the_permalink(); ?>">
@@ -51,9 +51,8 @@ jQuery(document).ready(function() {
             </div>
 	<div class="article-rest col-md-12">
 	<header class="entry-header">
-		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
-                </h1>
-		<?php if ( 'post' == get_post_type() || 'course' == get_post_type() ) : ?>
+                <h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+                <?php if ( 'post' == get_post_type() || 'course' == get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php aldehyde_posted_on(); ?>
                         <div id="btn-<?php the_ID(); ?>" class="btn btn-success button-reserve">Reservar Cupo</div>

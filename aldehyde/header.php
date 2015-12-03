@@ -98,7 +98,7 @@
 	
 	<?php
 	if ( (function_exists( 'of_get_option' )) && (of_get_option('slidetitle5',true) !=1) ) {
-	if ( ( of_get_option('slider_enabled') != 0 ) && (is_home())  )  
+	if ( ( of_get_option('slider_enabled') != 0 ) )  
 		{ ?>
 	<div class="slider-wrapper theme-default container"> 
     	<div class="ribbon"></div>    

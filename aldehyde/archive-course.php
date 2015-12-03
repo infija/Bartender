@@ -13,7 +13,7 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
-
+                        
 			<header class="page-header">
 				<h1 class="page-title">
 					<?php
@@ -60,7 +60,7 @@ get_header(); ?>
 							_e( 'Links', 'aldehyde' );
 
 						else :
-							_e( 'Archives', 'aldehyde' );
+							_e( 'Cursos', 'aldehyde' );
 
 						endif;
 					?>
