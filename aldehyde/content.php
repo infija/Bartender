@@ -4,32 +4,6 @@
  */
 ?>
 
-<script type="text/javascript">
-jQuery(document).ready(function() {
-	//jQuery('.article-rest .entry-content').hide();
-        jQuery('.arrows-article').click(function(event){
-            var id = event.currentTarget.id;
-            if(jQuery('#'+id+' .arrow-article-top').css('display')==="none"){
-                jQuery('#post-'+id+' .article-rest .entry-content').show();
-                jQuery('#'+id+' .arrow-article-bottom').hide();
-                jQuery('#'+id+' .arrow-article-top').show();
-            }else{
-                jQuery('#post-'+id+' .article-rest .entry-content').hide();
-                jQuery('#'+id+' .arrow-article-top').hide();
-                jQuery('#'+id+' .arrow-article-bottom').show();
-            }
-        });
-        jQuery('.button-reserve').click(function(event){
-            var id = event.currentTarget.id.split("-");
-            if(jQuery('#form-'+id[1]).css('display')==="none"){
-                jQuery('#form-'+id[1]).show();
-            }else{
-                jQuery('#form-'+id[1]).hide();
-            }
-        });
-});
-</script>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class("row archive"); ?>>
 
 	<div class="featured-thumb col-md-12 col-xs-12">

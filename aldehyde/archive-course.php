@@ -1,3 +1,6 @@
+
+
+
 <?php
 /**
  * The template for displaying Archive pages.
@@ -7,8 +10,34 @@
  * @package Aldehyde
  */
 
-get_header(); ?>
 
+get_header(); ?>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	//jQuery('.article-rest .entry-content').hide();
+        console.log("asdhjfkahsdjk");
+        jQuery('.arrows-article').click(function(event){
+            var id = event.currentTarget.id;
+            if(jQuery('#'+id+' .arrow-article-top').css('display')==="none"){
+                jQuery('#post-'+id+' .article-rest .entry-content').show();
+                jQuery('#'+id+' .arrow-article-bottom').hide();
+                jQuery('#'+id+' .arrow-article-top').show();
+            }else{
+                jQuery('#post-'+id+' .article-rest .entry-content').hide();
+                jQuery('#'+id+' .arrow-article-top').hide();
+                jQuery('#'+id+' .arrow-article-bottom').show();
+            }
+        });
+        jQuery('.button-reserve').click(function(event){
+            var id = event.currentTarget.id.split("-");
+            if(jQuery('#form-'+id[1]).css('display')==="none"){
+                jQuery('#form-'+id[1]).show();
+            }else{
+                jQuery('#form-'+id[1]).hide();
+            }
+        });
+});
+</script>
 	<section id="primary" class="content-area col-md-8">
 		<main id="main" class="site-main" role="main">
 
@@ -76,7 +105,7 @@ get_header(); ?>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-
+                                
 				<?php
 					/* Include the Post-Format-specific template for the content.
 					 * If you want to override this in a child theme, then include a file
