@@ -93,6 +93,7 @@ class AdminController
         $course_duration = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_DURATION, true ) );
         $course_description = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_DESCRIPTION, true ) );
         $course_places = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_PLACES, true ) );
+        $course_reservation_counter = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_RESERVATION_COUNTER, true ) );
         $course_reservation_start_date = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_RESERVATION_START_DATE, true ) );
         $course_reservation_end_date = esc_html( get_post_meta( $course->ID, CourseManager::COURSE_RESERVATION_END_DATE, true ) );
 
@@ -109,6 +110,10 @@ class AdminController
             <tr>
                 <td style="width: 100%">Número de Cupos</td>
                 <td><input type="number" size="80" name="<?php echo CourseManager::COURSE_PLACES ?>" value="<?php echo $course_places; ?>" /></td>
+            </tr>
+            <tr>
+                <td style="width: 100%">Número de Reservaciones</td>
+                <td><input readonly type="number" size="80" name="<?php echo CourseManager::COURSE_RESERVATION_COUNTER ?>" value="<?php echo is_numeric($course_reservation_counter)? $course_reservation_counter : 0; ?>" /></td>
             </tr>
             <tr>
                 <td style="width: 100%">Fecha inicio de reservacion</td>
@@ -129,27 +134,7 @@ class AdminController
     public function displayCourseReservationsMetaBox( $course ) {
         // retrieve Reservation
         $reservations = $this->applicationManager->getApplications($course->ID);
-
-        ?>
-        <table style="width:100%;">
-            <thead>
-                <td>Name</td>
-                <td>CI</td>
-                <td>Telefono</td>
-            </thead>
-        <?php
-            foreach ($reservations as $reservation) {
-                ?>
-                <tr>
-                    <td><?php echo $reservation->{ApplicationManager::FIRST_NAME} . ' ' . $reservation->{ApplicationManager::LAST_NAME} ?> </td>
-                    <td><?php echo $reservation->{ApplicationManager::CARNET} ?></td>
-                    <td><?php echo $reservation->{ApplicationManager::TELEFONO} ?></td>
-                </tr>
-                <?php
-            }
-        ?>
-        </table>
-        <?php
+        include(dirname( __FILE__ ) . "/../admin/templates/reservations.php");
     }
 
     /**
@@ -169,6 +154,7 @@ class AdminController
             }
             if ( isset( $_POST[CourseManager::COURSE_PLACES] ) && $_POST[CourseManager::COURSE_PLACES] != '' ) {
                 update_post_meta( $course_id, CourseManager::COURSE_PLACES, $_POST[CourseManager::COURSE_PLACES] );
+                update_post_meta( $course_id, CourseManager::COURSE_RESERVATION_COUNTER, 0);
             }
             if ( isset( $_POST[CourseManager::COURSE_RESERVATION_START_DATE] ) && $_POST[CourseManager::COURSE_RESERVATION_START_DATE] != '' ) {
                 update_post_meta( $course_id, CourseManager::COURSE_RESERVATION_START_DATE, $_POST[CourseManager::COURSE_RESERVATION_START_DATE] );
@@ -225,6 +211,12 @@ class AdminController
     public function manageSubmits(){
         if(!empty($_POST)){
             switch ($_POST['action']) {
+                case 'bt_remove_reservation':
+                    $id = $_POST['reservationId'];
+                    $courseId = $_POST['courseId'];
+                    $this->applicationManager->removeReservation($id);
+                    $this->courseManager->updateReservationCounter($courseId);
+                    break;
                 default:
                     //echo json_encode(['message'=> 'not allowed']);
                     break;

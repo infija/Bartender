@@ -2,6 +2,11 @@
 /**
  * @package Aldehyde
  */
+global $app;
+$reservationCount = $app->dbManager->courseManager->getReservationsCount($post->ID);
+$places = $app->dbManager->courseManager->getPlaces($post->ID);
+
+$canReserve = $places < $reservationCount;
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class("row archive"); ?>>
@@ -29,7 +34,7 @@
                 <?php if ( 'post' == get_post_type() || 'course' == get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php aldehyde_posted_on(); ?>
-                        <div id="btn-<?php the_ID(); ?>" class="btn btn-success button-reserve">Reservar Cupo</div>
+                        <div  <?php $canReserve ? '' : 'disabled' ?> id="btn-<?php the_ID(); ?>" class="btn btn-success button-reserve">Reservar Cupo</div>
                 </div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->

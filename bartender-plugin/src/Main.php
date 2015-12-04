@@ -19,7 +19,6 @@ class Main
 
     public function __construct(){
         $this->dbManager = new DBManager;
-        $this->courseManager = new CourseManager;
 
         if(is_admin()){
             $this->adminController = new AdminController($this->dbManager);
@@ -81,7 +80,7 @@ class Main
      */
     private function addHooks(){
         // initialize
-        add_action('init', array(&$this->courseManager, 'setCoursePostType'));
+        add_action('init', array(&$this->dbManager->courseManager, 'setCoursePostType'));
         add_action('init', array(&$this, 'manageSubmits'));
 
         add_action('wp_enqueue_scripts', array(&$this, 'enqueueScripts'));
