@@ -73,6 +73,7 @@ class Main
      */
     private function addShortCodes(){
         add_shortcode( 'hello_world', array(&$this, 'defaultPage'));
+        add_shortcode( 'show_posts', array(&$this, 'show_sidebar_posts'));
     }
 
     /**
@@ -130,7 +131,12 @@ class Main
         $rootpath = dirname(dirname(__FILE__));
         include_once "$rootpath/public/templates/temporal.php";
     }
-
+    
+    public function show_sidebar_posts(){
+        ob_start();
+        $rootpath = dirname(dirname(__FILE__));
+        include_once "$rootpath/public/templates/news.php";
+    }
 }
 
 
