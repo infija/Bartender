@@ -377,8 +377,6 @@ div.slide-description {
 /* 7. Content 
 ------------------------------------------------------- */
 #content {
-  background: white;
-  border-top: solid 4px #DFDFDF;
   padding: none;
   margin-right: 0px;
   margin-left: 0px;
@@ -387,6 +385,9 @@ div.slide-description {
 ------------------------------------------------------- */
 #primary {
   padding: 0 15px;
+  background: white;
+  margin-top: 35px;
+  margin-bottom: 100px;
 }
 #primary .icon-time:before,
 #primary .icon-user:before {
@@ -662,7 +663,7 @@ article.archive .article-rest .reserve-form {
 /* 9. Footer 
 ------------------------------------------------------- */
 #colophon {
-  background: #FFF;
+  background: #000000;
   padding: 10px;
   border-top: solid 1px #ddd;
   border-bottom: solid 4px #ddd;
