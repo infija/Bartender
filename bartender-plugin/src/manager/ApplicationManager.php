@@ -18,6 +18,7 @@ class ApplicationManager
     const TELEFONO   = 'telefono';
     const CARNET     = 'carnet';
     const POST_ID    = 'post_id';
+    const _ID        = 'id';
 
     public function __construct($wpdb, $dbManager){
         $this->wpdb = $wpdb;
@@ -58,6 +59,11 @@ class ApplicationManager
         return $this->wpdb->query($sql);
     }
 
+    public function removeReservation($id){
+        $sql = "DELETE FROM " . $this->getTableName() . " WHERE id=". $id . ";";
+        $this->wpdb->get_results($sql);
+    }
+
 
     /**
      * Create table
@@ -66,7 +72,7 @@ class ApplicationManager
     public function createTable(){
         // check on this sql, when wordpress updates its db post table
         $sql = "CREATE TABLE IF NOT EXISTS " . self::getTableName() . " (
-            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `" . self::_ID . "` int(11) NOT NULL AUTO_INCREMENT,
             `" . self::FIRST_NAME . "` varchar(255) NOT NULL,
             `" . self::LAST_NAME . "` varchar(255) NOT NULL,
             `" . self::TELEFONO . "` int(11) NOT NULL,

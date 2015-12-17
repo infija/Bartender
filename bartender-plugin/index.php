@@ -6,12 +6,13 @@ Plugin Name: Bartender
 Plugin URI:
 Version: 0.3
 Author: INFija
-Description: 
+Description:
 */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 require_once dirname( __FILE__ ) . '/src/Main.php';
 
+global $app;
 $app = Main::initialize();
 
 // register activation/desactivation methods

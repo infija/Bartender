@@ -15,8 +15,46 @@ class CourseManager
     const COURSE_DURATION = "course_duration";
     const COURSE_DESCRIPTION = "course_description";
     const COURSE_PLACES = "course_places";
+    const COURSE_RESERVATION_COUNTER = "reservation_counter";
     const COURSE_RESERVATION_START_DATE = "course_reservation_start_date";
     const COURSE_RESERVATION_END_DATE = "course_reservation_end_date";
+
+    private $wpdb, $dbManager;
+
+    public function __construct($wpdb, $dbManager){
+        $this->wpdb = $wpdb;
+        $this->dbManager = $dbManager;
+
+        // import wp sql functions
+        require_once(ABSPATH.'wp-admin/includes/upgrade.php');
+    }
+
+
+    // getters
+    public function getDuration($courseId){
+        return esc_html( get_post_meta( $courseId, self::COURSE_DURATION, true ) );
+    }
+
+    public function getDescription($courseId){
+        return esc_html( get_post_meta( $courseId, self::COURSE_DESCRIPTION, true ) );
+    }
+
+    public function getPlaces($courseId){
+        return  esc_html( get_post_meta( $courseId, self::COURSE_PLACES, true ) );
+    }
+
+    public function getReservationsCount($courseId){
+        return esc_html( get_post_meta( $courseId, self::COURSE_RESERVATION_COUNTER, true ) );
+    }
+
+    public function getReservationsStartDate($courseId){
+        return esc_html( get_post_meta( $courseId, self::COURSE_RESERVATION_START_DATE, true ) );
+    }
+
+    public function getReservationsEndDate($courseId){
+        return esc_html( get_post_meta( $courseId, self::COURSE_RESERVATION_END_DATE, true ) );
+    }
+
 
     /**
      * Define Course post-type
@@ -102,6 +140,17 @@ class CourseManager
         // $posts[0];
         wp_delete_post($posts[0]->ID);
 
+    }
+
+    /**
+     * Update reservation counter values
+     * @param  int|string  $id      courseId
+     * @param  boolean $increase    increase | decrease
+     * @return null
+     */
+    public function updateReservationCounter($id){
+        $reservationCounter = count($this->dbManager->applicationManager->getApplications($id));
+        update_post_meta($id, CourseManager::COURSE_RESERVATION_COUNTER, $reservationCounter);
     }
 
 }
