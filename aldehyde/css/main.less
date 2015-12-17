@@ -45,7 +45,7 @@ code {
 
 @default-background: #FFF;
 @link-color: #918F93;
-@link-hover-color: #89DB52;
+@link-hover-color: #52B5DB;//#89DB52;
 @menu-bar-bg: #FFF;
 @menu-hover: #EEE;
 @top-bar-bg: #DFDFDF;
@@ -417,7 +417,7 @@ div.slide-description {
 ------------------------------------------------------- */
 
 #primary {
-    padding: 0 15px;
+    padding: 0 30px;
     background: white;
     margin-top: 35px;
     margin-bottom: 100px;
@@ -426,7 +426,18 @@ div.slide-description {
     }
     .byline {
         display: inline;
-    }		
+    }
+    .course{
+        .entry-header{
+            .reserve-form-single{
+                display: none;
+                margin-top: 10px;
+            }
+            .button-reserve-single{
+                background-color: @link-hover-color;
+            }
+        }
+    }
 }
 article.archive {
 
@@ -634,7 +645,7 @@ article.archive {
         font-size: 20px;
         font-weight: normal;
         border-bottom: solid 4px @link-hover-color;
-        background: #fafafa;
+        background: #fafafa; 
         padding: 5px;
         margin-top: 0px;
     }
@@ -663,7 +674,7 @@ article.archive {
         padding-top: 0px;
     }
     .widget > div {
-        padding: 7px;
+        padding: 15px;
     }
 }
 

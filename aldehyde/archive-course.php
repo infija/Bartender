@@ -14,9 +14,7 @@
 get_header(); ?>
 <script type="text/javascript">
 jQuery(document).ready(function() {
-	//jQuery('.article-rest .entry-content').hide();
-        console.log("asdhjfkahsdjk");
-        jQuery('.arrows-article').click(function(event){
+	jQuery('.arrows-article').click(function(event){
             var id = event.currentTarget.id;
             if(jQuery('#'+id+' .arrow-article-top').css('display')==="none"){
                 jQuery('#post-'+id+' .article-rest .entry-content').show();

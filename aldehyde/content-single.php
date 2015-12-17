@@ -3,14 +3,36 @@
  * @package Aldehyde
  */
 ?>
-
+<script>
+    jQuery(document).ready(function() {
+        jQuery('.button-reserve-single').click(function(){
+            if(jQuery('.reserve-form-single').css('display')==="none"){
+                jQuery('.reserve-form-single').show();
+            }else{
+                jQuery('.reserve-form-single').hide();
+            }
+        });
+    });
+</script>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 
 		<div class="entry-meta">
 			<?php aldehyde_posted_on(); ?>
+                        <div class="btn btn-success button-reserve-single">Reservar Cupo</div>
 		</div><!-- .entry-meta -->
+                <div class="reserve-form-single">
+                    <form name="reservation-form" method="post">
+                        <input name="first_name" type="text" placeholder="Nombre" required/>
+                        <input name="last_name" type="text" placeholder="Apellido" required/>
+                        <input name="ci" type="number" placeholder="CI" required/>
+                        <input name="phone" type="number" placeholder="Telefono" required/>
+                        <input name="post_id" type="hidden" value="<?php the_ID(); ?>">
+                        <input name="action" type="hidden" value="course_reservation">
+                        <input type="submit" class="btn" value="Reservar"/>
+                    </form>
+                </div> 
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
@@ -26,6 +48,7 @@
 				'after'  => '</div>',
 			) );
 		?>
+             
 	</div><!-- .entry-content -->
 
 	<footer class="entry-meta">
