@@ -23,6 +23,17 @@
 body {
   background: #E3E3E3;
 }
+body ::-webkit-scrollbar {
+  width: 5px;
+}
+body ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(82, 181, 219, 0.3);
+  border-radius: 10px;
+}
+body ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(82, 181, 219, 0.5);
+}
 #main {
   width: 100%;
 }
@@ -185,7 +196,7 @@ a:active {
 /* Default Navigation */
 #site-navigation {
   clear: both;
-  display: block;
+  display: none !important;
   float: right;
   display: inline-block;
   background: #FFF;
@@ -400,13 +411,26 @@ div.slide-description {
   display: none;
   margin-top: 10px;
 }
+#primary .course .entry-header .reserve-form-single form input {
+  margin: 5px;
+}
 #primary .course .entry-header .button-reserve-single {
   background-color: #52B5DB;
 }
+#primary .course .entry-header .btn {
+  padding: 2px 8px;
+  font-size: 10px;
+}
+#primary .course .entry-header .btn-primary {
+  background-color: #52B5DB;
+  border-color: #4DA9CC;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
 article.archive .article-rest {
   margin: auto;
-  background: #fafafa;
-  border: solid 1px #eee;
+  background: #EFEFEF;
+  border: solid 1px #E0E0E0;
   padding-bottom: 30px;
 }
 article.archive .article-rest .entry-content {
@@ -417,22 +441,26 @@ article.archive .article-rest .arrows-article {
 }
 article.archive .article-rest .arrows-article .arrow-article-top {
   display: none;
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   background: url(themes/default/arrowTop.png) no-repeat;
 }
 article.archive .article-rest .arrows-article .arrow-article-bottom {
-  width: 22px;
-  height: 22px;
+  width: 25px;
+  height: 25px;
   background: url(themes/default/arrowBottom.png) no-repeat;
 }
 article.archive .article-rest .reserve-form {
   display: none;
   margin-top: 10px;
+  padding-right: 10px;
+}
+article.archive .article-rest .reserve-form form input {
+  margin: 5px;
 }
 .featured-thumb {
   margin: auto;
-  margin-top: 35px;
+  margin-top: 5px;
   overflow: hidden;
   width: 95%;
   padding: 0px;
@@ -585,9 +613,9 @@ article.archive .article-rest .reserve-form {
 #secondary h1.widget-title {
   font-size: 20px;
   font-weight: normal;
-  border-bottom: solid 4px #52B5DB;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
   background: #fafafa;
-  padding: 5px;
+  padding: 15px;
   margin-top: 0px;
 }
 #secondary .widget_search form {

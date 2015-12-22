@@ -34,7 +34,7 @@ $canReserve = $places < $reservationCount;
                 <?php if ( 'post' == get_post_type() || 'course' == get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php aldehyde_posted_on(); ?>
-                        <div  <?php $canReserve ? '' : 'disabled' ?> id="btn-<?php the_ID(); ?>" class="btn btn-success button-reserve">Reservar Cupo</div>
+                        <div  <?php $canReserve ? '' : 'disabled' ?> id="btn-<?php the_ID(); ?>" class="btn btn-primary button-reserve">Reservar Cupo</div>
                 </div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -64,13 +64,13 @@ $canReserve = $places < $reservationCount;
         </div>
         <div id="form-<?php the_ID(); ?>" class="reserve-form">
             <form name="reservation-form" method="post">
-                <input name="first_name" type="text" placeholder="Nombre" required/>
-                <input name="last_name" type="text" placeholder="Apellido" required/>
-                <input name="ci" type="number" placeholder="CI" required/>
-                <input name="phone" type="number" placeholder="Telefono" required/>
-                <input name="post_id" type="hidden" value="<?php the_ID(); ?>">
-                <input name="action" type="hidden" value="course_reservation">
-                <input type="submit" class="btn" value="Reservar"/>
+                <input name="first_name" class="form-control" type="text" placeholder="Nombre" required/>
+                <input name="last_name" class="form-control" type="text" placeholder="Apellido" required/>
+                <input name="ci" class="form-control" type="number" placeholder="CI" required/>
+                <input name="phone" class="form-control" type="number" placeholder="Telefono" required/>
+                <input name="post_id" class="form-control" type="hidden" value="<?php the_ID(); ?>">
+                <input name="action" class="form-control" type="hidden" value="course_reservation">
+                <input type="submit" class="btn btn-info" value="Reservar"/>
             </form>
         </div>
 	</div>

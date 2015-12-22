@@ -20,19 +20,23 @@
 
 		<div class="entry-meta">
 			<?php aldehyde_posted_on(); ?>
-                        <div class="btn btn-success button-reserve-single">Reservar Cupo</div>
+                        <?php if ('course' == get_post_type() ) : ?>
+                            <div class="btn btn-primary button-reserve-single">Reservar Cupo</div>
+                        <?php endif; ?>    
 		</div><!-- .entry-meta -->
-                <div class="reserve-form-single">
-                    <form name="reservation-form" method="post">
-                        <input name="first_name" type="text" placeholder="Nombre" required/>
-                        <input name="last_name" type="text" placeholder="Apellido" required/>
-                        <input name="ci" type="number" placeholder="CI" required/>
-                        <input name="phone" type="number" placeholder="Telefono" required/>
-                        <input name="post_id" type="hidden" value="<?php the_ID(); ?>">
-                        <input name="action" type="hidden" value="course_reservation">
-                        <input type="submit" class="btn" value="Reservar"/>
-                    </form>
-                </div> 
+                <?php if ('course' == get_post_type() ) : ?>
+                    <div class="reserve-form-single">
+                        <form name="reservation-form" method="post">
+                            <input name="first_name" class="form-control" type="text" placeholder="Nombre" required/>
+                            <input name="last_name" class="form-control" type="text" placeholder="Apellido" required/>
+                            <input name="ci" class="form-control" type="number" placeholder="CI" required/>
+                            <input name="phone" class="form-control" type="number" placeholder="Telefono" required/>
+                            <input name="post_id" class="form-control" type="hidden" value="<?php the_ID(); ?>">
+                            <input name="action" class="form-control" type="hidden" value="course_reservation">
+                            <input type="submit" class="" value="Reservar"/>
+                        </form>
+                    </div> 
+                <?php endif; ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
