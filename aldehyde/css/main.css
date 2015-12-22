@@ -398,7 +398,7 @@ div.slide-description {
   padding: 0 30px;
   background: white;
   margin-top: 35px;
-  margin-bottom: 100px;
+  padding-bottom: 20px;
 }
 #primary .icon-time:before,
 #primary .icon-user:before {
@@ -705,6 +705,10 @@ article.archive .article-rest .reserve-form form input {
   width: auto;
   margin-left: 0px;
   margin-right: 0px;
+}
+#colophon .site-info {
+  color: gray;
+  font-family: fantasy;
 }
 #footertext {
   float: right;
