@@ -64,7 +64,6 @@ class ApplicationManager
         $this->wpdb->get_results($sql);
     }
 
-
     /**
      * Create table
      * @return null
@@ -79,6 +78,7 @@ class ApplicationManager
             `" . self::CARNET . "` int(11) NOT NULL,
             `" . self::POST_ID . "` int(11) NOT NULL,
             PRIMARY KEY (`id`),
+            CONSTRAINT UNIQUE_VALUES UNIQUE (" . self::POST_ID . "," . self::CARNET . "),
             CONSTRAINT `FK_" . self::POST_ID . "` FOREIGN KEY (`" . self::POST_ID . "`) REFERENCES `" . DBManager::getDBPrefix() . "posts` (`ID`)
         ) ENGINE=MyISAM  DEFAULT CHARSET=utf8";
 

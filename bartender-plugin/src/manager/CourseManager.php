@@ -55,7 +55,6 @@ class CourseManager
         return esc_html( get_post_meta( $courseId, self::COURSE_RESERVATION_END_DATE, true ) );
     }
 
-
     /**
      * Define Course post-type
      */

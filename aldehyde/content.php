@@ -5,11 +5,16 @@
 global $app;
 $reservationCount = $app->dbManager->courseManager->getReservationsCount($post->ID);
 $places = $app->dbManager->courseManager->getPlaces($post->ID);
+$reservationStartDate = strtotime($app->dbManager->courseManager->getReservationsStartDate($post->ID));
+$reservationEndDate = strtotime($app->dbManager->courseManager->getReservationsEndDate($post->ID));
+$currentDate = strtotime(date("Y-m-d"));
 
-$canReserve = $places < $reservationCount;
+$canReserve = $places > $reservationCount;
+$canReserve = $canReserve && ($reservationStartDate <= $currentDate && $currentDate <= $reservationEndDate );
+
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class("row archive"); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class("row archive"); ?> >
 
 	<div class="featured-thumb col-md-12 col-xs-12">
             <div class="img-meta">
@@ -34,7 +39,7 @@ $canReserve = $places < $reservationCount;
                 <?php if ( 'post' == get_post_type() || 'course' == get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php aldehyde_posted_on(); ?>
-                        <div  <?php $canReserve ? '' : 'disabled' ?> id="btn-<?php the_ID(); ?>" class="btn btn-primary button-reserve">Reservar Cupo</div>
+                        <div  <?php echo $canReserve ? '' : 'disabled' ?> id="btn-<?php the_ID(); ?>" class="btn btn-primary button-reserve">Reservar Cupo</div>
                 </div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
