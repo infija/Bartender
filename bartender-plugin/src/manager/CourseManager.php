@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 class CourseManager
 {
     // define new custom post type
-    const POST_TYPE = 'course';
+    const POST_TYPE = 'courses';
 
     // define Course custom fields
     const COURSE_DURATION = "course_duration";

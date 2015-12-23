@@ -25,7 +25,7 @@ class AdminController
      */
     public function fillMenu() {
 
-        add_menu_page('Cursos', 'Cursos', 'manage_options', 'bartender_courses', array(&$this, 'courses'));
+        // add_menu_page('Cursos', 'Cursos', 'manage_options', 'bartender_courses', array(&$this, 'courses'));
 
         // add_submenu_page(self::$rootSlug, 'Add new course', $campaign->title, 'manage_options', $campaignSlug, array(&$this, 'manageAdminPages'));
     }
