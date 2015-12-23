@@ -22,14 +22,14 @@
 <div id="parallax-bg"></div>
 <div id="page" class="hfeed site">
 	<?php do_action( 'aldehyde_before' ); ?>
-	
+
 	<div id="top-bar">
 	<div class="container">
-	
+
 	<div id="top-search" class="col-md-6">
 	<?php get_search_form(); ?>
 	</div>
-	
+
 	<div id="social-icons" class="col-md-6">
 			    <?php if ( of_get_option('facebook', true) != "") { ?>
 				 <a target="_blank" href="<?php echo esc_url(of_get_option('facebook', true)); ?>" title="Facebook" ><i class="social-icon icon-facebook-sign"></i></a>
@@ -64,9 +64,9 @@
 	             <?php if ( of_get_option('dribble', true) != "") { ?>
 				 <a target="_blank" href="<?php echo esc_url(of_get_option('dribble', true)); ?>" title="Dribbble" ><i class="social-icon icon-dribbble"></i></a>
 	             <?php } ?>
-         
+
 	</div>
-	
+
 	</div>
 	</div><!--#top-bar-->
 	<header id="masthead" class="site-header row container" role="banner">
@@ -74,45 +74,45 @@
 		<?php if((of_get_option('logo', true) != "") && (of_get_option('logo', true) != 1) ) { ?>
 			<h1 class="site-title logo-container"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 			<?php
-			echo "<img class='main_logo' src='".of_get_option('logo', true)."' title='".esc_attr(get_bloginfo( 'name','display' ) )."'></a></h1>";	
+			echo "<img class='main_logo' src='".of_get_option('logo', true)."' title='".esc_attr(get_bloginfo( 'name','display' ) )."'></a></h1>";
 			}
 		else { ?>
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1> 
-		<?php	
+			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+		<?php
 		}
 		?>
 		</div>
-		
-	  <div class="default-nav-wrapper col-md-8 col-xs-12"> 	
+
+	  <div class="default-nav-wrapper col-md-8 col-xs-12">
 	   <nav id="site-navigation" class="main-navigation" role="navigation">
          <div id="nav-container">
 			<h1 class="menu-toggle"></h1>
 			<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'aldehyde' ); ?>"><?php _e( 'Skip to content', 'aldehyde' ); ?></a></div>
 
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-          </div>  
+          </div>
 		</nav><!-- #site-navigation -->
-	  </div>	
+	  </div>
 	</header><!-- #masthead -->
 
-	
+
 	<?php
 	if ( (function_exists( 'of_get_option' )) && (of_get_option('slidetitle5',true) !=1) ) {
-	if ( ( of_get_option('slider_enabled') != 0 ) )  
+	if ( ( of_get_option('slider_enabled') != 0 ) )
 		{ ?>
-	<div class="slider-wrapper theme-default container"> 
-    	<div class="ribbon"></div>    
+	<div class="slider-wrapper theme-default container">
+    	<div class="ribbon"></div>
     		<div id="slider" class="nivoSlider">
     			<?php
 		  		$slider_flag = false;
 		  		for ($i=1;$i<6;$i++) {
 		  			$caption = ((of_get_option('slidetitle'.$i, true)=="")?"":"#caption_".$i);
 					if ( of_get_option('slide'.$i, true) != "" ) {
-						echo "<a href='".of_get_option('slideurl'.$i, true)."'><img src='".of_get_option('slide'.$i, true)."' title='".$caption."'></a>"; 
+						echo "<a href='".of_get_option('slideurl'.$i, true)."'><img src='".of_get_option('slide'.$i, true)."' title='".$caption."'></a>";
 						$slider_flag = true;
 					}
 				}
-				?>  
+				?>
     		</div><!--#slider-->
     		<?php for ($i=1;$i<6;$i++) {
     				$caption = ((of_get_option('slidetitle'.$i, true)=="")?"":"#caption_".$i);
@@ -123,13 +123,41 @@
 	    				echo "<div class='slide-description'>".of_get_option('slidedesc'.$i, true)."</div>";
 	    				echo "</div>";
     				}
-    			}	
-    	    
+    			}
+
 			?>
-    </div>	
-	<?php 
+    </div>
+
+
+	<!-- NOTIFICATIONS -->
+
+	<?php
+	global $notifications;
+	if(isset($notifications) && count($notifications) > 0){
+	?>
+    <div class="slider-wrapper theme-default container notifications">
+    	<?php
+    	if(array_key_exists('error', $notifications)){
+    		?>
+			<div class="error" style="color:red"><?php echo $notifications['error'] ?></div>
+    		<?php
+    	}
+    	if(array_key_exists('success', $notifications)){
+    		?>
+			<div class="success" style="color:green"><?php echo $notifications['success'] ?></div>
+    		<?php
+    	}
+    	?>
+
+    </div>
+    <?php
+    }
+    ?>
+
+    <!-- CONTENT -->
+	<?php
 			}
 		}
 		?>
 		<div id="content" class="site-content row">
-		<div class="container col-md-12"> 
+		<div class="container col-md-12">
