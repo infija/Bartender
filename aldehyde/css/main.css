@@ -181,6 +181,20 @@ body {
     padding: 10px 5px;
   }
 }
+.notifications {
+  color: white;
+  font-weight: bolder;
+}
+.notifications .error {
+  background: rgba(255, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+}
+.notifications .success {
+  background: rgba(96, 202, 76, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+}
 /* 4. Links
 ------------------------------------------------------- */
 a {

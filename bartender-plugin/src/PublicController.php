@@ -16,9 +16,6 @@ class PublicController
 
         global $notifications;
         $notifications = array();
-        // TODO: to delete - test data
-        $notifications['success'] = 'Success!!!!!';
-        $notifications['error'] = 'Test example error message';
     }
 
     /**
@@ -29,19 +26,14 @@ class PublicController
         if(!empty($_POST)){
             switch ($_POST['action']) {
                 case 'course_reservation':
+                    global $notifications;
                     $res = $this->dbManager->applicationManager ->createReservation($_POST['post_id'], $_POST['first_name'], $_POST['last_name'], $_POST['phone'], $_POST['ci']);
                     $this->dbManager->courseManager->updateReservationCounter($_POST['post_id']);
                     if ($res){
-                        $notifications['success'] = 'errrrrr';
-                        // TODO: implement notifications/ success
-                        // new application/reservation was created
+                        $notifications['success'] = 'Su reservacion fue realizada exitosamente.';
                     }else{
-                        // TODO: implement notifications/ error
-                        echo 'someting bad has happened';
-                        //exit;
+                        $notifications['error'] = 'Lo sentimos, su reserva no pudo ser registrada. Por favor intente de nuevo.';
                     }
-                    header("Location: " . $_SERVER['HTTP_REFERER'] );
-                    exit;
                 default:
                     break;
             }

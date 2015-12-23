@@ -133,26 +133,23 @@
 
 	<?php
 	global $notifications;
-	if(isset($notifications) && count($notifications) > 0){
-	?>
-    <div class="slider-wrapper theme-default container notifications">
-    	<?php
-    	if(array_key_exists('error', $notifications)){
-    		?>
-			<div class="error" style="color:red"><?php echo $notifications['error'] ?></div>
-    		<?php
-    	}
-    	if(array_key_exists('success', $notifications)){
-    		?>
-			<div class="success" style="color:green"><?php echo $notifications['success'] ?></div>
-    		<?php
-    	}
-    	?>
+	if(isset($notifications) && count($notifications) > 0){ ?>
+            <div class="container notifications">
+                <?php
+                if(array_key_exists('error', $notifications)){
+                        ?>
+                                <div class="error"><?php echo $notifications['error'] ?></div>
+                        <?php
+                }
+                if(array_key_exists('success', $notifications)){
+                        ?>
+                                <div class="success"><?php echo $notifications['success'] ?></div>
+                        <?php
+                }
+                ?>
 
-    </div>
-    <?php
-    }
-    ?>
+            </div>
+        <?php } ?>
 
     <!-- CONTENT -->
 	<?php
