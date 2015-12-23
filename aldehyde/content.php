@@ -38,7 +38,17 @@ $canReserve = $places < $reservationCount;
                 </div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
-
+        <div id="form-<?php the_ID(); ?>" class="reserve-form">
+            <form name="reservation-form" method="post">
+                <input name="first_name" class="form-control" type="text" placeholder="Nombre" required/>
+                <input name="last_name" class="form-control" type="text" placeholder="Apellido" required/>
+                <input name="ci" class="form-control" type="number" placeholder="CI" required/>
+                <input name="phone" class="form-control" type="number" placeholder="Telefono" required/>
+                <input name="post_id" class="form-control" type="hidden" value="<?php the_ID(); ?>">
+                <input name="action" class="form-control" type="hidden" value="course_reservation">
+                <input type="submit" class="btn btn-info" value="Reservar"/>
+            </form>
+        </div>
 	<?php if ( is_search() ) : // Only display Excerpts for Search ?>
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
@@ -62,17 +72,6 @@ $canReserve = $places < $reservationCount;
             <div class="arrow-article-top"></div>
             <div class="arrow-article-bottom"></div>
         </div>
-        <div id="form-<?php the_ID(); ?>" class="reserve-form">
-            <form name="reservation-form" method="post">
-                <input name="first_name" class="form-control" type="text" placeholder="Nombre" required/>
-                <input name="last_name" class="form-control" type="text" placeholder="Apellido" required/>
-                <input name="ci" class="form-control" type="number" placeholder="CI" required/>
-                <input name="phone" class="form-control" type="number" placeholder="Telefono" required/>
-                <input name="post_id" class="form-control" type="hidden" value="<?php the_ID(); ?>">
-                <input name="action" class="form-control" type="hidden" value="course_reservation">
-                <input type="submit" class="btn btn-info" value="Reservar"/>
-            </form>
         </div>
-	</div>
 
 </article><!-- #post-## -->
