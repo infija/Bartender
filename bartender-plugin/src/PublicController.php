@@ -47,4 +47,15 @@ class PublicController
             }
         }
     }
+
+    /**
+     * overriting default query on homepage
+     * @return null
+     */
+    public function overrideHomePostsQuery($query){
+        global $wp_the_query;
+        if( $wp_the_query === $query && $query->is_home() ) {
+            $query->set('post_type', 'course');
+        }
+    }
 }
