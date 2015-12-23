@@ -37,11 +37,11 @@ class DBManager
      * @return null
      */
     public function createContext(){
-        // TODO: create tables & test data
         $this->applicationManager->createTable();
 
-        $postId = $this->courseManager->createTestData();
-        $this->applicationManager->createTestData($postId);
+        // TEST DATA
+        // $postId = $this->courseManager->createTestData();
+        // $this->applicationManager->createTestData($postId);
     }
 
     /**
