@@ -85,6 +85,8 @@ class Main
         add_action('init', array(&$this, 'manageSubmits'));
 
         add_action('wp_enqueue_scripts', array(&$this, 'enqueueScripts'));
+        add_action( 'pre_get_posts', array(&$this->publicController, 'overrideHomePostsQuery'));
+
         if(is_admin()){
             // add filters
             add_filter( 'manage_edit-course_columns', array(&$this->adminController, 'registerColumns') );
@@ -131,7 +133,7 @@ class Main
         $rootpath = dirname(dirname(__FILE__));
         include_once "$rootpath/public/templates/temporal.php";
     }
-    
+
     public function show_sidebar_posts(){
         ob_start();
         $rootpath = dirname(dirname(__FILE__));
